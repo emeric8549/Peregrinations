@@ -38,10 +38,10 @@ Generate synthetic TSP instances:
 ```.tsp_gen --n 50 --seed 42 --format both --out ../../data/synthetic ```
 
 Options:
-    - `--n <int>`: number of cities (default: 50)
-    - `--seed <int>`: random seed (default: 0)
-    - `--format <tsplib|csv|both>`: output format (default: tsplib)
-    - `--out <dir>`: output directory (default: `data/synthetic`)
+- `--n <int>`: number of cities (default: 50)
+- `--seed <int>`: random seed (default: 0)
+- `--format <tsplib|csv|both>`: output format (default: tsplib)
+- `--out <dir>`: output directory (default: `data/synthetic`)
 
 ## Next steps
 
