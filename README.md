@@ -39,11 +39,11 @@ This will generate the executable tsp_gen in /build/.
 
 Generate synthetic TSP instances:
 
-```.tsp_gen --n 50 --seed 42 --out data/synthetic_points.csv ```
+```.tsp_gen --n 50 --seed 42 --out data/generated_points.csv ```
 
 Options:
-- `--n <int>`: number of cities (default: 50)
-- `--seed <int>`: random seed (default: 0)
+- `--n <int>`: number of cities (default: 10)
+- `--seed <int>`: random seed (default: random)
 - `--out <dir>`: output directory (default: `data/synthetic_points.csv`)
 
 ## Next steps
