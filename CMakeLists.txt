@@ -19,12 +19,12 @@ set(CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/libtorch")
 find_package(Torch REQUIRED)
 
 # Main executable
-add_executable(peregrinations
+add_executable(tsp_gen
     src/main.cpp
     src/tsp_solver.cpp
     src/data/data_generator.cpp
 )
 
 # Link Torch
-target_link_libraries(peregrinations "${TORCH_LIBRARIES}")
-set_property(TARGET peregrinations PROPERTY CXX_STANDARD 17)
+target_link_libraries(tsp_gen "${TORCH_LIBRARIES}")
+set_property(TARGET tsp_gen PROPERTY CXX_STANDARD 17)
