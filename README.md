@@ -19,13 +19,13 @@ The primary goals are:
 
 ## Build Instructions (C++)
 
-**Prerequisites**: Linux, C++17 compiler (g++ >= 9 or clang >= 10), CMake >= 3.16, cuda-toolkit >= 12.6, LibTorch >= 12.6.
+**Prerequisites**: Linux, C++17 compiler (g++ >= 9 or clang >= 10), CMake >= 3.16.
   
 
 Because this project uses CUDA to improve computational time, you will need to install cuda-toolkit and LibTorch **(make sure they are the same version, e.g 12.6)**. You may unzip the LibTorch folder in the root directory.
 
 
-Once everything is installed, you can run these commands:
+Once everything is installed, you can run these commands (change the version of cuda with your own):
 ```bash
 mkdir -p build && cd build
 cmake -DCMAKE_CUDA_COMPILER=/usr/local/cuda-12.6/bin/nvcc -DCMAKE_PREFIX_PATH=../libtorch ..
