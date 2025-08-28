@@ -19,29 +19,32 @@ The primary goals are:
 
 ## Build Instructions (C++)
 
-**Prerequisites**: Linux, C++17 compiler (g++ >= 9 or clang >= 10), CMake >= 3.16.
+**Prerequisites**: Linux, C++17 compiler (g++ >= 9 or clang >= 10), CMake >= 3.16, cuda-toolkit >= 12.6, LibTorch >= 12.6.
+  
 
+Because this project uses CUDA to improve computational time, you will need to install cuda-toolkit and LibTorch **(make sure they are the same version, e.g 12.6)**. You may unzip the LibTorch folder in the root directory.
+
+
+Once everything is installed, you can run these commands:
 ```bash
-cd cpp
 mkdir -p build && cd build
-cmake -DCMAKE_BUILD_TYPE=Release ..
-cmake --build .
+cmake -DCMAKE_CUDA_COMPILER=/usr/local/cuda-12.6/bin/nvcc -DCMAKE_PREFIX_PATH=../libtorch ..
+make
 ```
 
-This will generate the executable tsp_gen in cpp/build/.
+This will generate the executable tsp_gen in /build/.
 
 
 ## Usage
 
 Generate synthetic TSP instances:
 
-```.tsp_gen --n 50 --seed 42 --format both --out ../../data/synthetic ```
+```.tsp_gen --n 50 --seed 42 --out data/synthetic_points.csv ```
 
 Options:
 - `--n <int>`: number of cities (default: 50)
 - `--seed <int>`: random seed (default: 0)
-- `--format <tsplib|csv|both>`: output format (default: tsplib)
-- `--out <dir>`: output directory (default: `data/synthetic`)
+- `--out <dir>`: output directory (default: `data/synthetic_points.csv`)
 
 ## Next steps
 
