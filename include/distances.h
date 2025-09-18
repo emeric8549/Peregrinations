@@ -6,3 +6,4 @@ struct Point {
 };
 
 double euclidean_distance(const Point& a, const Point& b);
+double manhattan_distance(const Point& a, const Point& b);
