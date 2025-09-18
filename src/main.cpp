@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <random>
-#include "tsp_solver.h"
+#include "distances.h"
 #include "data/data_generator.h"
 
 int main(int argc, char* argv[]) {
