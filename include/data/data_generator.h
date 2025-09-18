@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "tsp_solver.h"
+#include "distances.h"
 
 std::vector<Point> generate_points(int N, unsigned int seed);
 
