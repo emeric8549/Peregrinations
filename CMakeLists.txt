@@ -21,8 +21,9 @@ find_package(Torch REQUIRED)
 # Main executable
 add_executable(tsp_gen
     src/main.cpp
-    src/tsp_solver.cpp
+    src/distances.cpp
     src/data/data_generator.cpp
+    src/nearest_neighbor.cpp
 )
 
 # Link Torch
