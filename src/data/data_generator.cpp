@@ -4,6 +4,11 @@
 #include <iostream>
 
 std::vector<Point> generate_points(int N, unsigned int seed) {
+    if (N <= 0) {
+        std::cerr << "Error: N must be positive" << std::endl;
+        return {};
+    }
+
     std::mt19937 gen(seed);
     std::uniform_real_distribution<> dis(0.0, 100.0);
 
@@ -19,7 +24,7 @@ bool save_points_to_csv(const std::vector<Point>& points, const std::string& fil
      std::ofstream file("../" + filename);
     if (!file.is_open()) {
         std::cerr << "Error: cannot open file " << filename << std::endl;
-        return 1;
+        return false;
     }
 
     file << "x,y\n";
@@ -28,7 +33,7 @@ bool save_points_to_csv(const std::vector<Point>& points, const std::string& fil
     }
     file.close();
 
-    std::cout << "Data successfully generated in " << filename << std::endl;
+    std::cout << "Data successfully generated in ../" << filename << std::endl;
 
     return true;
 }
