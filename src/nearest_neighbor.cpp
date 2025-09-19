@@ -3,7 +3,7 @@
 #include <numeric>
 #include <algorithm>
 
-std::pair<std::vector<int>, double> nearest_neighbor_tour(const std::vector<Point>& points) {
+std::pair<std::vector<int>, double> nearest_neighbor_tour(const std::vector<Point>& points, std::function<double(const Point&, const Point&)> metric_func) {
     int N = points.size();
     if (N == 0) {
         return {{}, 0.0};
@@ -23,7 +23,7 @@ std::pair<std::vector<int>, double> nearest_neighbor_tour(const std::vector<Poin
 
         for (int j = 0; j < N; ++j) {
             if (!visited[j]) {
-                double dist = euclidean_distance(points[current_idx], points[j]);
+                double dist = metric_func(points[current_idx], points[j]);
                 if (dist < min_dist) {
                     min_dist = dist;
                     next_idx = j;
@@ -42,7 +42,7 @@ std::pair<std::vector<int>, double> nearest_neighbor_tour(const std::vector<Poin
     }
 
     if (N > 1) {
-        tour_length += euclidean_distance(points[current_idx], points[tour[0]]);
+        tour_length += metric_func(points[current_idx], points[tour[0]]);
         tour.push_back(tour[0]);
     }
     return {tour, tour_length};
