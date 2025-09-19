@@ -8,7 +8,7 @@
 int main(int argc, char* argv[]) {
     int N = 10;
     unsigned int seed = std::random_device{}();
-    std::string filename = "data/synthetic_points.csv";
+    std::string filename = "../data/synthetic_points.csv";
     bool calculate_simple_tour = false;
     bool calculate_nn_tour = false;
 

@@ -21,7 +21,7 @@ std::vector<Point> generate_points(int N, unsigned int seed) {
 }
 
 bool save_points_to_csv(const std::vector<Point>& points, const std::string& filename) {
-     std::ofstream file("../" + filename);
+    std::ofstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Error: cannot open file " << filename << std::endl;
         return false;
@@ -33,7 +33,7 @@ bool save_points_to_csv(const std::vector<Point>& points, const std::string& fil
     }
     file.close();
 
-    std::cout << "Data successfully generated in ../" << filename << std::endl;
+    std::cout << "Data successfully generated in " << filename << std::endl;
 
     return true;
 }
