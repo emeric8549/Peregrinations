@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <random>
+#include <chrono>
 #include "distances.h"
 #include "data/data_generator.h"
 #include "nearest_neighbor.h"
@@ -51,12 +52,17 @@ int main(int argc, char* argv[]) {
         if (N < 2) {
             std::cout << "Not enough points to calculate a tour." << std::endl;
         } else {
+            const auto start{std::chrono::steady_clock::now()};
             double tour_length = 0.0;
             for (int i = 0; i < N - 1; ++i) {
                 tour_length += metric_func(points[i], points[i + 1]);
             }
             tour_length += metric_func(points[N - 1], points[0]); // Return to start
+            const auto end{std::chrono::steady_clock::now()};
             std::cout << "Length of simple tour: " << tour_length << std::endl;
+            std::cout << "Time taken for simple tour: "
+                      << std::chrono::duration_cast<std::chrono::microseconds>(end - start).count()
+                      << " microseconds" << std::endl;
         }
     }
 
@@ -64,8 +70,13 @@ int main(int argc, char* argv[]) {
         if (N < 2) {
             std::cout << "Not enough points to calculate a tour." << std::endl;
         } else {
+            const auto start{std::chrono::steady_clock::now()};
             auto [tour, tour_length] = nearest_neighbor_tour(points, metric_func);
+            const auto end{std::chrono::steady_clock::now()};
             std::cout << "Length of nearest neighbor tour: " << tour_length << std::endl;
+            std::cout << "Time taken for nearest neighbor tour: "
+                      << std::chrono::duration_cast<std::chrono::microseconds>(end - start).count()
+                      << " microseconds" << std::endl;
         }
     }
 
