@@ -2,6 +2,7 @@
 #include <string>
 #include <random>
 #include <chrono>
+#include <functional>
 #include "distances.h"
 #include "data/data_generator.h"
 #include "nearest_neighbor.h"
@@ -63,10 +64,9 @@ int main(int argc, char* argv[]) {
             }
             tour_length += metric_func(points[N - 1], points[0]); // Return to start
             const auto end{std::chrono::steady_clock::now()};
+            auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
             std::cout << "Length of simple tour: " << tour_length << std::endl;
-            std::cout << "Time taken for simple tour: "
-                      << std::chrono::duration_cast<std::chrono::microseconds>(end - start).count()
-                      << " microseconds" << std::endl;
+            std::cout << "Time taken for simple tour: " << duration << " microseconds" << std::endl;
         }
     }
 
@@ -77,10 +77,9 @@ int main(int argc, char* argv[]) {
             const auto start{std::chrono::steady_clock::now()};
             auto [tour, tour_length] = nearest_neighbor_tour(points, metric_func);
             const auto end{std::chrono::steady_clock::now()};
+            auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
             std::cout << "Length of nearest neighbor tour: " << tour_length << std::endl;
-            std::cout << "Time taken for nearest neighbor tour: "
-                      << std::chrono::duration_cast<std::chrono::microseconds>(end - start).count()
-                      << " microseconds" << std::endl;
+            std::cout << "Time taken for nearest neighbor tour: " << duration << " microseconds" << std::endl;
         }
     }
 
@@ -88,13 +87,20 @@ int main(int argc, char* argv[]) {
         if (N < 2) {
             std::cout << "Not enough points to calculate a tour." << std::endl;
         } else {
-            const auto start{std::chrono::steady_clock::now()};
-            auto [tour, tour_length] = two_opt_tour(points, metric_func);
-            const auto end{std::chrono::steady_clock::now()};
-            std::cout << "Length of 2-opt tour: " << tour_length << std::endl;
-            std::cout << "Time taken for 2-opt tour: "
-                      << std::chrono::duration_cast<std::chrono::microseconds>(end - start).count()
-                      << " microseconds" << std::endl;
+            const auto start_fi{std::chrono::steady_clock::now()};
+            auto [tour_fi, tour_length_fi] = two_opt_tour_first_improvement(points, metric_func);
+            const auto end_fi{std::chrono::steady_clock::now()};
+            auto duration_fi = std::chrono::duration_cast<std::chrono::microseconds>(end_fi - start_fi).count();
+            std::cout << "Length of 2-opt first improvement tour: " << tour_length_fi << std::endl;
+            std::cout << "Time taken for 2-opt first improvement tour: " << duration_fi << " microseconds" << std::endl;
+
+
+            const auto start_bi{std::chrono::steady_clock::now()};
+            auto [tour_bi, tour_length_bi] = two_opt_tour_best_improvement(points, metric_func);
+            const auto end_bi{std::chrono::steady_clock::now()};
+            auto duration_bi = std::chrono::duration_cast<std::chrono::microseconds>(end_bi - start_bi).count();
+            std::cout << "Length of 2-opt best improvement tour: " << tour_length_bi << std::endl;
+            std::cout << "Time taken for 2-opt best improvement tour: " << duration_bi << " microseconds" << std::endl;
         }
     }
 
