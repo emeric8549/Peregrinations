@@ -90,7 +90,7 @@ std::pair<std::vector<int>, double> two_opt_tour_best_improvement(const std::vec
         double best_delta = 0.0;
         int best_i = -1, best_k = -1;
 
-        for (int i = 0, i < N - 1; ++i) {
+        for (int i = 0; i < N - 1; ++i) {
             for (int k = i + 2; k < N; ++k) {
                 int A = tour[i];
                 int B = tour[(i + 1) % N];
