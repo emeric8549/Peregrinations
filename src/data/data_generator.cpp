@@ -10,7 +10,7 @@ std::vector<Point> generate_points(int N, unsigned int seed) {
     }
 
     std::mt19937 gen(seed);
-    std::uniform_real_distribution<> dis(0.0, 100.0);
+    std::uniform_int_distribution<> dis(-1000, 1000);
 
     std::vector<Point> points;
     points.reserve(N);
