@@ -2,7 +2,17 @@
 #include <numeric>
 #include <algorithm>
 
-std::pair<std::vector<int>, double> two_opt_tour(const std::vector<Point>& points, std::function<double(const Point&, const Point&)> metric_func) {
+
+static double compute_tour_length(const std::vector<int>& tour, const std::vector<Point>& points, const std::function<double(const Point&, const Point&)>& metric_func) {
+    double length = 0.0;
+    int N = tour.size();
+    for (int i = 0; i < N; ++i) {
+        length += metric_func(points[tour[i]], points[tour[(i + 1) % N]]);
+    }
+    return length;
+}
+
+std::pair<std::vector<int>, double> two_opt_tour_first_improvement(const std::vector<Point>& points, std::function<double(const Point&, const Point&)> metric_func) {
     int N = points.size();
     if (N < 2) {
         return {{}, 0.0};
@@ -23,18 +33,7 @@ std::pair<std::vector<int>, double> two_opt_tour(const std::vector<Point>& point
         }
     }
 
-    auto tour_length = [&](const std::vector<int>& t) {
-        double s = 0.0;
-        for (int i = 0; i < N; ++i) {
-            int a = t[i];
-            int b = t[(i + 1) % N];
-            s += dist_matrix[a][b];
-        }
-        return s;
-    };
-
-    double current_length = tour_length(tour);
-
+    double current_length = compute_tour_length(tour, points, metric_func);
     bool improved = true;
     const double epsilon = 1e-12;
     while (improved) {
