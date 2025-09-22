@@ -25,6 +25,7 @@ add_executable(tsp_gen
     src/data/data_generator.cpp
     src/nearest_neighbor.cpp
     src/two_opt.cpp
+    src/data/logger.cpp
 )
 
 # Link Torch
