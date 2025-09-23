@@ -67,7 +67,10 @@ int main(int argc, char* argv[]) {
                 tour.push_back(i + 1);
                 tour_length += metric_func(points[i], points[i + 1]);
             }
+
+            tour.push_back(0);
             tour_length += metric_func(points[N - 1], points[0]);
+            
             const auto end{std::chrono::steady_clock::now()};
             auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
             std::cout << "Length of simple tour: " << tour_length << std::endl;
