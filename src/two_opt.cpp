@@ -21,8 +21,8 @@ std::pair<std::vector<int>, double> two_opt_tour_first_improvement(const std::ve
         return {{0, 1, 0}, 2 * metric_func(points[0], points[1])};
     }
 
-    std::vector<int> tour(N + 1);
-    std::iota(tour.begin(), tour.end() - 1, 0);
+    std::vector<int> tour(N);
+    std::iota(tour.begin(), tour.end(), 0);
 
     std::vector<std::vector<double>> dist_matrix(N, std::vector<double>(N, 0.0));
     for (int i = 0; i < N; ++i) {
@@ -57,6 +57,7 @@ std::pair<std::vector<int>, double> two_opt_tour_first_improvement(const std::ve
         }
     }
 
+    tour.push_back(0);
     return {tour, current_length};
 }
 
@@ -70,8 +71,8 @@ std::pair<std::vector<int>, double> two_opt_tour_best_improvement(const std::vec
         return {{0, 1, 0}, 2 * metric_func(points[0], points[1])};
     }
 
-    std::vector<int> tour(N + 1);
-    std::iota(tour.begin(), tour.end() - 1, 0);
+    std::vector<int> tour(N);
+    std::iota(tour.begin(), tour.end(), 0);
 
     std::vector<std::vector<double>> dist_matrix(N, std::vector<double>(N, 0.0));
     for (int i = 0; i < N; ++i) {
@@ -114,5 +115,6 @@ std::pair<std::vector<int>, double> two_opt_tour_best_improvement(const std::vec
         }
     }
 
+    tour.push_back(0);
     return {tour, current_length};
 }
