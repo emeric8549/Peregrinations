@@ -45,7 +45,10 @@ Options:
 - `--n <int>`: number of cities (default: 10)
 - `--seed <int>`: random seed (default: random)
 - `--out <dir>`: output directory (default: `data/synthetic_points.csv`)
+- `--distance-metric <str>`: the distance to use to solve the TSP between euclidean or manhattan (default: euclidean)
 - `--calculate-simple-tour`: whether you want to calculate a simple tour (in the order of generation of the points)
+- `--calculate-nn-tour`: whether you want to solve the TSP based on the nearest-neighbor heuristic
+- `--calculate--2opt-tour`: whether you want to solve the TSP based on the 2-opt heuristic (both first-improvement and best-improvement methods)
 
 ## Next steps
 
