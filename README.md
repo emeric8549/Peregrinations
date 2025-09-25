@@ -39,7 +39,7 @@ This will generate the executable tsp_gen in /build/.
 
 Generate synthetic TSP instances:
 
-```./tsp_gen --n 50 --seed 42 --out data/generated_points.csv ```
+```./tsp_gen --n 50 --seed 42 --distance-metric manhattan --calculate-2opt-tour```
 
 Options:
 - `--n <int>`: number of cities (default: 10)
@@ -52,7 +52,7 @@ Options:
 
 ## Next steps
 
-1. Implement **classical heuristics** (Nearest Neighbor, 2-opt)
+1. Implement **classical heuristics** (Nearest Neighbor, 2-opt, genetic algorithm)
 2. Implement a **benchmark framework** to compare classical vs ML solutions
 3. Integrate **TorchScript ML inference** into C++ core
 4. Add GNN-based or RL solvers for TSP
