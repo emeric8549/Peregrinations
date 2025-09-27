@@ -11,11 +11,14 @@ static std::mt19937 gen(rd());
 GeneticTSPSolver::GeneticTSPSolver(const std::vector<Point>& points,
                                    int population_size,
                                    int generations,
-                                   double mutation_rate)
+                                   double mutation_rate,
+                                   std::function<double(const Point&, const Point&)> metric_func
+                                 )
     : points(points),
       population_size(population_size),
       generations(generations),
-      mutation_rate(mutation_rate) {}
+      mutation_rate(mutation_rate),
+      metric_func(metric_func) {}
 
 void GeneticTSPSolver::initialize_population() {
   int n = points.size();
@@ -24,8 +27,18 @@ void GeneticTSPSolver::initialize_population() {
 
   population.clear();
   for (int i = 0; i < population_size; i++) {
-    std::vector<int> tour = base
+    std::vector<int> tour = base;
     std::shuffle(tour.begin(), tour.end(), gen);
     population.push_back(tour);
   }
+}
+
+double GeneticTSPSolver::evaluate(const std::vector<int>& tour) const {
+  double total_distance = 0.0;
+  int n = tour.size();
+
+  for (int i = 0; i < n; i++) {
+    total_distance += metric_func(points[tour[i]], points[tour[(i + 1) % n]]);
+  }
+  return total_distance;
 }

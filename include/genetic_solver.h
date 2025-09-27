@@ -7,7 +7,8 @@ public :
     GeneticTSPSolver(const std::vector<Point>& points,
                      int population_size = 100,
                      int generations = 500,
-                     double mutation_rate = 0.05);
+                     double mutation_rate = 0.05,
+                     std::function<double(const Point&, const Point&)> metric_func = euclidean_distance);
     
     std::vector<int> solve();
 
@@ -16,6 +17,7 @@ private:
     int population_size;
     int generations;
     double mutation_rate;
+    std::function<double(const Point&, const Point&)> metric_func;
 
     std::vector<std::vector<int>> population;
     std::vector<double> fitness_scores;
