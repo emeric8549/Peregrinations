@@ -42,3 +42,11 @@ double GeneticTSPSolver::evaluate(const std::vector<int>& tour) const {
   }
   return total_distance;
 }
+
+std::vector<int> GeneticTSPSolver::tournament_selection() {
+  std::uniform_int_distribution<> dist (0, population_size - 1);
+  int i1 = dist(gen);
+  int i2 = dist(gen);
+  if (fitness_scores[i1] < fitness_scores[i2]) return population[i1];
+  return population[i2];
+}
