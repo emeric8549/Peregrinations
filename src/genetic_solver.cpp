@@ -4,6 +4,7 @@
 #include <numeric>
 #include <limits>
 #include <cmath>
+#include <functional>
 
 static std::random_device rd;
 static std::mt19937 gen(rd());
@@ -87,7 +88,7 @@ void GeneticTSPSolver::mutate(std::vector<int>& individual) {
   }
 }
 
-std::vector<int> GeneticTSPSolver::solve() {
+std::pair<std::vector<int>, double> GeneticTSPSolver::solve() {
   initialize_population();
 
   std::vector<int> best_tour;
@@ -115,5 +116,5 @@ std::vector<int> GeneticTSPSolver::solve() {
     population = std::move(new_population);
   }
 
-  return best_tour;
+  return {best_tour, best_distance};
 }

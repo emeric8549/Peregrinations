@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "distances.h"
+#include <functional>
 
 class GeneticTSPSolver {
 public :
@@ -10,7 +11,7 @@ public :
                      double mutation_rate = 0.05,
                      std::function<double(const Point&, const Point&)> metric_func = euclidean_distance);
     
-    std::vector<int> solve();
+    std::pair<std::vector<int>, double> solve();
 
 private:
     const std::vector<Point>& points;
