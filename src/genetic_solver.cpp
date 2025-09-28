@@ -74,3 +74,15 @@ std::vector<int> GeneticTSPSolver::crossover(const std::vector<int>& parent1, co
   }
   return child;
 }
+
+void GeneticTSPSolver::mutate(std::vector<int>& individual) {
+  std::uniform_real_distribution<> prob(0.0, 1.0);
+  if (prob(gen) < mutation_rate) {
+    int n = individual.size();
+    std::uniform_int_distribution<> dist(0, n - 1);
+    int i = dist(gen);
+    int j = dist(gen);
+    if (i > j) std::swap(i, j);
+    std::reverse(individual.begin() + i, individual.begin() + j);
+  }
+}
