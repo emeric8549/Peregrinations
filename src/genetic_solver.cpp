@@ -86,3 +86,34 @@ void GeneticTSPSolver::mutate(std::vector<int>& individual) {
     std::reverse(individual.begin() + i, individual.begin() + j);
   }
 }
+
+std::vector<int> GeneticTSPSolver::solve() {
+  initialize_population();
+
+  std::vector<int> best_tour;
+  double best_distance = std::numeric_limits<double>::infinity();
+
+  for (int gen_idx = 0; gen_idx < generations; gen_idx++) {
+    fitness_scores.clear();
+    for (auto& ind : population) {
+      double score = evaluate(ind);
+      fitness_scores.push_back(score);
+      if (score < best_distance) {
+        best_distance = score;
+        best_tour = ind;
+      }
+    }
+
+    std::vector<std::vector<int>> new_population;
+    for (int i = 0; i < population_size; i++) {
+      auto parent1 = tournament_selection();
+      auto parent2 = tournament_selection();
+      auto child = crossover(parent1, parent2);
+      mutate(child);
+      new_population.push_back(child);
+    }
+    population = std::move(new_population);
+  }
+
+  return best_tour;
+}
