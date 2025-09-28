@@ -50,3 +50,27 @@ std::vector<int> GeneticTSPSolver::tournament_selection() {
   if (fitness_scores[i1] < fitness_scores[i2]) return population[i1];
   return population[i2];
 }
+
+std::vector<int> GeneticTSPSolver::crossover(const std::vector<int>& parent1, const std::vector<int>& parent2) {
+  int n = parent1.size();
+  std::vector<int> child(n, -1);
+
+  std::uniform_int_distribution<> dist(0, n - 1);
+  int start = dist(gen);
+  int end = dist(gen);
+  if (start > end) std::swap(start, end);
+
+  for (int i = start; i <= end; i++) {
+    child[i] = parent1[i];
+  }
+
+  int idx = (end + 1) % n;
+  for (int j = 0; j < n; j++) {
+    int candidate = parent2[(end + 1 + j) % n];
+    if (std::find(child.begin(), child.end(), candidate) == child.end()) {
+      child[idx] = candidate;
+      idx = (idx + 1) % n;
+    }
+  }
+  return child;
+}
