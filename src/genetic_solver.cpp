@@ -116,5 +116,6 @@ std::pair<std::vector<int>, double> GeneticTSPSolver::solve() {
     population = std::move(new_population);
   }
 
+  best_tour.push_back(best_tour[0]);
   return {best_tour, best_distance};
 }
