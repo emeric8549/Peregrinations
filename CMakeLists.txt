@@ -24,6 +24,7 @@ add_executable(tsp_gen
     src/distances.cpp
     src/data/data_generator.cpp
     src/nearest_neighbor.cpp
+    src/genetic_solver.cpp
     src/two_opt.cpp
     src/data/logger.cpp
 )
