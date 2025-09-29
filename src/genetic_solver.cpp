@@ -47,7 +47,11 @@ double GeneticTSPSolver::evaluate(const std::vector<int>& tour) const {
 std::vector<int> GeneticTSPSolver::tournament_selection() {
   std::uniform_int_distribution<> dist (0, population_size - 1);
   int i1 = dist(gen);
-  int i2 = dist(gen);
+  int i2;
+  do {
+    i2 = dist(gen);
+  } while(i1 == i2);
+
   if (fitness_scores[i1] < fitness_scores[i2]) return population[i1];
   return population[i2];
 }
@@ -80,11 +84,17 @@ void GeneticTSPSolver::mutate(std::vector<int>& individual) {
   std::uniform_real_distribution<> prob(0.0, 1.0);
   if (prob(gen) < mutation_rate) {
     int n = individual.size();
+    if (n < 2) return;
+
     std::uniform_int_distribution<> dist(0, n - 1);
     int i = dist(gen);
-    int j = dist(gen);
+    int j;
+    do {
+      j = dist(gen);
+    } while (i == j);
+
     if (i > j) std::swap(i, j);
-    std::reverse(individual.begin() + i, individual.begin() + j);
+    std::reverse(individual.begin() + i, individual.begin() + j + 1);
   }
 }
 
