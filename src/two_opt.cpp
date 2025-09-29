@@ -39,7 +39,7 @@ std::pair<std::vector<int>, double> two_opt_tour_first_improvement(const std::ve
     while (improved) {
         improved = false;
         for (int i = 0; i < N - 1 && !improved; ++i) {
-            for (int k = i + 2; k < N + 1; ++k) {
+            for (int k = i + 2; k < N; ++k) {
                 int A = tour[i];
                 int B = tour[(i + 1) % N];
                 int C = tour[k];
