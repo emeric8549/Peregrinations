@@ -116,7 +116,12 @@ std::pair<std::vector<int>, double> GeneticTSPSolver::solve() {
     }
 
     std::vector<std::vector<int>> new_population;
-    for (int i = 0; i < population_size; i++) {
+
+    auto best_it = std::min_element(fitness_scores.begin(), fitness_scores.end());
+    int best_idx = std::distance(fitness_scores.begin(), best_it);
+    new_population.push_back(population[best_idx]);
+
+    for (int i = 1; i < population_size; i++) {
       auto parent1 = tournament_selection();
       auto parent2 = tournament_selection();
       auto child = crossover(parent1, parent2);
