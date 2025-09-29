@@ -1,4 +1,5 @@
 #include "genetic_solver.h"
+#include "two_opt.h"
 #include <algorithm>
 #include <random>
 #include <numeric>
@@ -26,10 +27,26 @@ void GeneticTSPSolver::initialize_population() {
   std::vector<int> base(n);
   std::iota(base.begin(), base.end(), 0);
 
+  auto [tour_2opt, tour_length] = two_opt_tour_best_improvement(points, metric_func);
+
   population.clear();
   for (int i = 0; i < population_size; i++) {
-    std::vector<int> tour = base;
-    std::shuffle(tour.begin(), tour.end(), gen);
+    std::vector<int> tour;
+    if (i == 0) {
+      tour = tour_2opt;
+    } else if (i < population_size / 3) {
+      tour = base;
+      std::shuffle(tour.begin(), tour.end(), gen);
+    } else {
+      tour = tour_2opt;
+      std::uniform_int_distribution<> dist(0, n - 1);
+      int i1 = dist(gen);
+      int i2;
+      do {
+        i2 = dist(gen);
+      } while (i1 == i2);
+      std::swap(tour[i1], tour[i2]);
+    }
     population.push_back(tour);
   }
 }
