@@ -6,8 +6,8 @@
 class GeneticTSPSolver {
 public :
     GeneticTSPSolver(const std::vector<Point>& points,
-                     int population_size = 100,
-                     int generations = 500,
+                     int population_size = 500,
+                     int generations = 5000,
                      double mutation_rate = 0.05,
                      std::function<double(const Point&, const Point&)> metric_func = euclidean_distance);
     
