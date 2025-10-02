@@ -79,7 +79,7 @@ int main(int argc, char* argv[]) {
             auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
             std::cout << "Length of simple tour: " << tour_length << std::endl;
             std::cout << "Time taken for simple tour: " << duration << " microseconds" << std::endl;
-            log_experiment("experiments.csv", "simple-tour", N, tour_length, duration, tour, points);
+            log_experiment("experiments.csv", "simple-tour", N, seed, tour_length, duration, tour, points);
         }
     }
 
@@ -93,7 +93,7 @@ int main(int argc, char* argv[]) {
             auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
             std::cout << "Length of nearest neighbor tour: " << tour_length << std::endl;
             std::cout << "Time taken for nearest neighbor tour: " << duration << " microseconds" << std::endl;
-            log_experiment("experiments.csv", "nearest-neighbor", N, tour_length, duration, tour, points);
+            log_experiment("experiments.csv", "nearest-neighbor", N, seed, tour_length, duration, tour, points);
         }
     }
 
@@ -107,7 +107,7 @@ int main(int argc, char* argv[]) {
             auto duration_fi = std::chrono::duration_cast<std::chrono::microseconds>(end_fi - start_fi).count();
             std::cout << "Length of 2-opt first improvement tour: " << tour_length_fi << std::endl;
             std::cout << "Time taken for 2-opt first improvement tour: " << duration_fi << " microseconds" << std::endl;
-            log_experiment("experiments.csv", "2-opt-fi", N, tour_length_fi, duration_fi, tour_fi, points);
+            log_experiment("experiments.csv", "2-opt-fi", N, seed, tour_length_fi, duration_fi, tour_fi, points);
 
 
             const auto start_bi{std::chrono::steady_clock::now()};
@@ -116,7 +116,7 @@ int main(int argc, char* argv[]) {
             auto duration_bi = std::chrono::duration_cast<std::chrono::microseconds>(end_bi - start_bi).count();
             std::cout << "Length of 2-opt best improvement tour: " << tour_length_bi << std::endl;
             std::cout << "Time taken for 2-opt best improvement tour: " << duration_bi << " microseconds" << std::endl;
-            log_experiment("experiments.csv", "2-opt-bi", N, tour_length_bi, duration_bi, tour_bi, points);
+            log_experiment("experiments.csv", "2-opt-bi", N, seed, tour_length_bi, duration_bi, tour_bi, points);
         }
     }
 
@@ -131,7 +131,7 @@ int main(int argc, char* argv[]) {
             auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
             std::cout << "Length of genetic algorithm tour: " << tour_length << std::endl;
             std::cout << "Time taken for genetic algorithm tour: " << duration << " microseconds" << std::endl;
-            log_experiment("experiments.csv", "genetic-algorithm", N, tour_length, duration, tour, points);
+            log_experiment("experiments.csv", "genetic-algorithm", N, seed, tour_length, duration, tour, points);
         }
     }
     return 0;

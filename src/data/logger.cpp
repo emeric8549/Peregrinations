@@ -8,6 +8,7 @@ void log_experiment(
     const std::string& filename,
     const std::string& algorithm,
     int n_points,
+    unsigned int seed,
     double tour_length,
     long long exec_time_microseconds,
     const std::vector<int>& tour,
@@ -22,7 +23,7 @@ void log_experiment(
     }
 
     if (!file_exists) {
-        file << "algorithm,n_points,tour_length,execution_time_microseconds,tour_order,points\n";
+        file << "algorithm,n_points,seed,tour_length,execution_time_microseconds,tour_order,points\n";
     }
 
     std::ostringstream tour_stream;
@@ -39,6 +40,7 @@ void log_experiment(
 
     file << algorithm << ","
          << n_points << ","
+         << seed << ","
          << tour_length << ","
          << exec_time_microseconds << ","
          << "\"" << tour_stream.str() << "\","

@@ -7,6 +7,7 @@ void log_experiment(
     const std::string& filename,
     const std::string& algorithm,
     int n_points,
+    unsigned int seed,
     double tour_length,
     long long exec_time_microseconds,
     const std::vector<int>& tour,
