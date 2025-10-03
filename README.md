@@ -53,7 +53,6 @@ Options:
 
 ## Next steps
 
-1. Implement **classical heuristics** (Nearest Neighbor, 2-opt, genetic algorithm)
-2. Implement a **benchmark framework** to compare classical vs ML solutions
-3. Integrate **TorchScript ML inference** into C++ core
-4. Add GNN-based or RL solvers for TSP
+1. Implement a **benchmark framework** to compare classical vs ML solutions
+2. Integrate **TorchScript ML inference** into C++ core
+3. Add GNN-based or RL solvers for TSP
