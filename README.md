@@ -51,6 +51,8 @@ Options:
 - `--calculate-2opt-tour`: whether you want to solve the TSP based on the 2-opt heuristic (both first-improvement and best-improvement methods)
 - `--calculate-genetic-tour`: whether you want to solve the TSP with a genetic algorithm (using crossovers and mutations)
 
+A logger allows you to get a glimpse at your past runs. It can be found in `/build/experiments.csv`
+
 ## Next steps
 
 1. Implement a **benchmark framework** to compare classical vs ML solutions
