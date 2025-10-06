@@ -39,7 +39,7 @@ This will generate the executable tsp_gen in /build/.
 
 Generate synthetic TSP instances:
 
-```./tsp_gen --n 50 --seed 42 --distance-metric manhattan --calculate-2opt-tour```
+```./tsp_gen --n 50 --seed 42 --distance-metric manhattan --calculate-simple-tour --calculate-2opt-tour```
 
 Options:
 - `--n <int>`: number of cities (default: 10)
