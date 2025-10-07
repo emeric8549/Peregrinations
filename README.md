@@ -32,7 +32,7 @@ cmake -DCMAKE_CUDA_COMPILER=/usr/local/cuda-12.6/bin/nvcc -DCMAKE_PREFIX_PATH=..
 make
 ```
 
-This will generate the executable tsp_gen in /build/.
+This will generate the executable tsp_gen in `/build/`.
 
 
 ## Usage
